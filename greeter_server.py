@@ -26,6 +26,7 @@ import redis
 
 import time
 
+
 class Greeter(helloworld_pb2_grpc.GreeterServicer):
 
     def __init__(self):
@@ -35,19 +36,19 @@ class Greeter(helloworld_pb2_grpc.GreeterServicer):
         for g in self.greetings:
             response = helloworld_pb2.HelloReply(message=g + request.name)
             try:
-                conn = redis.StrictRedis(host='redis', port=6379) 
-                conn.set("log.greeter_server." + str(datetime.datetime.now()), g + request.name) 
-            except Exception as ex: 
+                conn = redis.StrictRedis(host='redis', port=6379)
+                conn.set("log.greeter_serverasdsadsadas." + str(datetime.datetime.now()), g + request.name)  # This goes into redis
+            except Exception as ex:
                 print('Error:', ex)
-            yield response
+            yield response  # Generator
 
 
 def serve():
-	    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
-	    helloworld_pb2_grpc.add_GreeterServicer_to_server(Greeter(), server)
-	    server.add_insecure_port('[::]:50051')
-	    server.start()
-	    server.wait_for_termination()
+    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
+    helloworld_pb2_grpc.add_GreeterServicer_to_server(Greeter(), server)
+    server.add_insecure_port('[::]:50051')
+    server.start()
+    server.wait_for_termination()
 
 
 if __name__ == '__main__':

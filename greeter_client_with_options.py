@@ -32,7 +32,7 @@ def run():
                                options=[('grpc.lb_policy_name', 'pick_first'),
                                         ('grpc.enable_retries', 0),
                                         ('grpc.keepalive_timeout_ms', 10000)
-                                       ]) as channel:
+                                        ]) as channel:
         stub = helloworld_pb2_grpc.GreeterStub(channel)
         # Timeout in seconds.
         # Please refer gRPC Python documents for more detail. https://grpc.io/grpc/python/grpc.html
