@@ -38,18 +38,18 @@ class Greeter(Assignment1_pb2_grpc.GreeterServicer):
         self.tweets = pd.read_csv("sentiment140/training.1600000.processed.noemoticon.csv", encoding="latin")
 
     def SayHello(self, request, context):
-        random_tweet = (self.tweets.iloc[[random.randint(0, self.tweets.shape[0])]])
+        random_tweet = self.tweets.iloc[[random.randint(0, self.tweets.shape[0])]]
 
         response = Assignment1_pb2.HelloReply(
-            target=str(random_tweet[0].values[0]),
-            id=str(random_tweet[1].values[0]),
-            date=str(random_tweet[2].values[0]),
-            flag=str(random_tweet[3].values[0]),
-            user=str(random_tweet[4].values[0]),
-            text=str(random_tweet[5].values[0])
+            target='%s' % str(random_tweet[0]),
+            id="a",
+            date="a",
+            flag="a",
+            user="a",
+            text="a"
         )
 
-        yield response  # Generator
+        return response  # Generator
 
 
 def serve():
