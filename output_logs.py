@@ -12,7 +12,7 @@ def print_logs():
         conn = redis.StrictRedis(host='redis', port=6379)
         for key in conn.scan_iter("log.greeter_server*"):
             value = str(conn.get(key))
-            output += str(key) + value + '<br>'  # Style the output lines
+            output += str(key) + " AAAA " + value + '<br>'  # Style the output lines
     except Exception as ex:
         output = 'Error:' + str(ex)
     return output

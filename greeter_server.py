@@ -30,14 +30,21 @@ import time
 class Greeter(helloworld_pb2_grpc.GreeterServicer):
 
     def __init__(self):
-        self.greetings = ["Hello ", "Greetings ", "All the best ", "Nice to meet you "]
+        self.greetings = ["Aren't you great ", "Hello ", "Greetings ", "All the best ", "Nice to meet you ", "what a load of shit"]
 
     def SayHello(self, request, context):
-        for g in self.greetings:
-            response = helloworld_pb2.HelloReply(message=g + request.name)
+        i = 0
+        for greeting in self.greetings:
+            response = helloworld_pb2.HelloReply(message=greeting + request.name)
             try:
                 conn = redis.StrictRedis(host='redis', port=6379)
-                conn.set("log.greeter_serverasdsadsadas." + str(datetime.datetime.now()), g + request.name)  # This goes into redis
+                if i == 0:
+                    conn.set("log.greeter_serverAAAAA." + str("MYKEY"), "HELLO1")  # This goes into redis
+                    i = 1
+                elif i == 1:
+                    conn.set("log.greeter_serverAAAAA." + str("MYKEY"), "HELLO2")  # This goes into redis
+                    i = 0
+                time.sleep(2)
             except Exception as ex:
                 print('Error:', ex)
             yield response  # Generator
