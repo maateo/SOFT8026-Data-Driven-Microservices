@@ -12,49 +12,49 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 """The Python implementation of the GRPC helloworld.Greeter server."""
-
+import random
 from concurrent import futures
 import datetime
 import logging
 
 import grpc
 
-import helloworld_pb2
-import helloworld_pb2_grpc
+import Assignment1_pb2
+import Assignment1_pb2_grpc
 
 import redis
 
 import time
 
+import csv
+import pandas as pd
 
-class Greeter(helloworld_pb2_grpc.GreeterServicer):
+
+# THIS  FILE IOS RESOPNSIBLE for sending back a line of tweets when requested
+
+class Greeter(Assignment1_pb2_grpc.GreeterServicer):
 
     def __init__(self):
-        self.greetings = ["Aren't you great ", "Hello ", "Greetings ", "All the best ", "Nice to meet you ", "what a load of shit"]
+        self.tweets = pd.read_csv("sentiment140/training.1600000.processed.noemoticon.csv", encoding="latin")
 
     def SayHello(self, request, context):
-        i = 0
-        for greeting in self.greetings:
-            response = helloworld_pb2.HelloReply(message=greeting + request.name)
-            try:
-                conn = redis.StrictRedis(host='redis', port=6379)
-                # conn.set("log.greeter_serverasdsadsadas." + str(datetime.datetime.now()), g + request.name)  # This goes into redis
+        random_tweet = (self.tweets.iloc[[random.randint(0, self.tweets.shape[0])]])
 
-                if i == 0:
-                    conn.set("log.greeter_serverAAAAA." + str("MYKEY"), "HELLO1")  # This goes into redis
-                    i = 1
-                elif i == 1:
-                    conn.set("log.greeter_serverAAAAA." + str("MYKEY"), "HELLO2")  # This goes into redis
-                    i = 0
-                time.sleep(2)
-            except Exception as ex:
-                print('Error:', ex)
-            yield response  # Generator
+        response = Assignment1_pb2.HelloReply(
+            target=str(random_tweet[0].values[0]),
+            id=str(random_tweet[1].values[0]),
+            date=str(random_tweet[2].values[0]),
+            flag=str(random_tweet[3].values[0]),
+            user=str(random_tweet[4].values[0]),
+            text=str(random_tweet[5].values[0])
+        )
+
+        yield response  # Generator
 
 
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
-    helloworld_pb2_grpc.add_GreeterServicer_to_server(Greeter(), server)
+    Assignment1_pb2_grpc.add_GreeterServicer_to_server(Greeter(), server)
     server.add_insecure_port('[::]:50051')
     server.start()
     server.wait_for_termination()

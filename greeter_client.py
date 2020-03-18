@@ -18,8 +18,8 @@ import logging
 
 import grpc
 
-import helloworld_pb2
-import helloworld_pb2_grpc
+import Assignment1_pb2
+import Assignment1_pb2_grpc
 
 import random
 import time
@@ -31,12 +31,20 @@ def run():
     # of the code.
     while True:
         with grpc.insecure_channel('greeter_server:50051') as channel:
-            stub = helloworld_pb2_grpc.GreeterStub(channel)
+            stub = Assignment1_pb2_grpc.GreeterStub(channel)
             total_length = 0
-            for response in stub.SayHello(helloworld_pb2.HelloRequest(name='Larkin')):
-                total_length += len(response.message)
-                print("real-time character count: " + str(total_length))
-                print("Greeter client received: " + response.message, flush=True)
+            for response in stub.SayHello(Assignment1_pb2.HelloRequest(name='Larkin')):
+                # total_length += len(response.message)
+                # print("real-time character count: " + str(total_length))
+                print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+                print("Greeter client received: " + response.target + response.id  +response.date + response.flag + response.user+ response.text, flush=True)
+                print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+                print()
+                print()
+                print()
+                print()
+                print()
+                print()
                 time.sleep(random.randint(1, 3))
 
 
