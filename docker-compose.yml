@@ -1,0 +1,28 @@
+version: '3' 
+
+services: 
+  greeter_server: 
+    build: 
+      context: . 
+      dockerfile: Server.Dockerfile 
+    ports:  
+      - "50051:50051" 
+  greeter_client: 
+    build: 
+      context: . 
+      dockerfile: Client.Dockerfile 
+    depends_on:
+      - "greeter_server" 
+    command: ["./wait-for-it.sh", "greeter_server:50051", "--", "python", "greeter_client.py"]
+  redis: 
+    image: redis:alpine 
+    ports:
+      - "6379:6379" 
+  weblogs: 
+    build: 
+      context: . 
+      dockerfile: WebLog.Dockerfile 
+    ports: 
+      - "8080:5000" 
+    depends_on: 
+      - "redis" 
