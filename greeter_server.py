@@ -38,6 +38,8 @@ class Greeter(helloworld_pb2_grpc.GreeterServicer):
             response = helloworld_pb2.HelloReply(message=greeting + request.name)
             try:
                 conn = redis.StrictRedis(host='redis', port=6379)
+                # conn.set("log.greeter_serverasdsadsadas." + str(datetime.datetime.now()), g + request.name)  # This goes into redis
+
                 if i == 0:
                     conn.set("log.greeter_serverAAAAA." + str("MYKEY"), "HELLO1")  # This goes into redis
                     i = 1
