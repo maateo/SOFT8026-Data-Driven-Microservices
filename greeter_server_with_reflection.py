@@ -19,21 +19,28 @@ import logging
 import grpc
 from grpc_reflection.v1alpha import reflection
 
-import helloworld_pb2
-import helloworld_pb2_grpc
+import Assignment1_pb2
+import Assignment1_pb2_grpc
 
 
-class Greeter(helloworld_pb2_grpc.GreeterServicer):
+class Greeter(Assignment1_pb2_grpc.GreeterServicer):
 
     def SayHello(self, request, context):
-        return helloworld_pb2.HelloReply(message='Hello, %s!' % request.name)
+        return Assignment1_pb2.HelloReply(
+            target=str("0"),
+            id=str("1467810369"),
+            date=str("Mon Apr 06 22:19:45 PDT 2009"),
+            flag=str("NO_QUERY"),
+            user=str("_TheSpecialOne_"),
+            text=str("@switchfoot http://twitpic.com/2y1zl - Awww, that's a bummer.  You shoulda got David Carr of Third Day to do it. ;D")
+        )
 
 
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
-    helloworld_pb2_grpc.add_GreeterServicer_to_server(Greeter(), server)
+    Assignment1_pb2_grpc.add_GreeterServicer_to_server(Greeter(), server)
     SERVICE_NAMES = (
-        helloworld_pb2.DESCRIPTOR.services_by_name['Greeter'].full_name,
+        Assignment1_pb2.DESCRIPTOR.services_by_name['Greeter'].full_name,
         reflection.SERVICE_NAME,
     )
     reflection.enable_server_reflection(SERVICE_NAMES, server)
