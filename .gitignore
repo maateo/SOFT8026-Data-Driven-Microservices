@@ -1,2 +1,4 @@
 /server/sentiment140/
+/venv/
+
 *.pyc
