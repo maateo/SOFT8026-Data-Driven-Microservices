@@ -17,21 +17,17 @@ from __future__ import print_function
 
 import datetime
 import logging
-
-import grpc
-
-import Assignment1_pb2_grpc
-import Assignment1_pb2
-
 import random
 import time
+
+import grpc
 import redis
+
+import Assignment1_pb2
+import Assignment1_pb2_grpc
 
 
 def run():
-    # NOTE(gRPC Python Team): .close() is possible on a channel and should be
-    # used in circumstances in which the with statement does not fit the needs
-    # of the code.
     while True:
         with grpc.insecure_channel('greeter_server:50051') as channel:
             stub = Assignment1_pb2_grpc.GreeterStub(channel)
@@ -47,7 +43,6 @@ def run():
 
         except Exception as ex:
             print('Error:', ex)
-
 
         print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
         print("Greeter client received: ", response.target, response.id, response.date, response.flag, response.user, response.text, flush=True)

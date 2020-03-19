@@ -12,19 +12,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 """The Python implementation of the GRPC helloworld.Greeter server."""
+
+import logging
 import random
 from concurrent import futures
-import logging
 
 import grpc
-
-import Assignment1_pb2_grpc
-import Assignment1_pb2
-
 import pandas as pd
 
+import Assignment1_pb2
+import Assignment1_pb2_grpc
 
-# THIS  FILE IOS RESOPNSIBLE for sending back a line of tweets when requested
 
 class Greeter(Assignment1_pb2_grpc.GreeterServicer):
 
