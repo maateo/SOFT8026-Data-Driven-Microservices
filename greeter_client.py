@@ -37,7 +37,7 @@ def run():
             # total_length += len(response.message)
             # print("real-time character count: " + str(total_length))
         print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
-        print("Greeter client received: " + response.target + response.id  +response.date + response.flag + response.user+ response.text, flush=True)
+        print("Greeter client received: ", response.target, response.id, response.date, response.flag, response.user, response.text, flush=True)
         print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
         print()
         print()
