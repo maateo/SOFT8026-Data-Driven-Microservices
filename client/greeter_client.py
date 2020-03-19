@@ -20,8 +20,8 @@ import logging
 
 import grpc
 
-import Assignment1_pb2
 import Assignment1_pb2_grpc
+import Assignment1_pb2
 
 import random
 import time

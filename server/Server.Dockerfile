@@ -12,9 +12,11 @@ WORKDIR /app
 
 # Copy the current host directory contents into the container at /app 
 
-COPY . /app 
+COPY /server /app
 
- 
+COPY Assignment1_pb2.py /app
+COPY Assignment1_pb2_grpc.py /app
+
 
 # Install any needed packages specified in requirements.txt 
 

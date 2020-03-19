@@ -19,8 +19,8 @@ import logging
 import grpc
 from grpc_reflection.v1alpha import reflection
 
-import Assignment1_pb2
 import Assignment1_pb2_grpc
+import Assignment1_pb2
 
 
 class Greeter(Assignment1_pb2_grpc.GreeterServicer):

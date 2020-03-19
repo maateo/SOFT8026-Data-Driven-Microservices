@@ -24,7 +24,7 @@ def run():
     # NOTE(gRPC Python Team): .close() is possible on a channel and should be
     # used in circumstances in which the with statement does not fit the needs
     # of the code.
-    tweets = pd.read_csv("sentiment140/training.1600000.processed.noemoticon.csv", header=None, encoding="latin")
+    tweets = pd.read_csv("server/sentiment140/training.1600000.processed.noemoticon.csv", header=None, encoding="latin")
     tweet = tweets.iloc[[random.randint(0, tweets.shape[0])]]
     print(tweet[5])
 

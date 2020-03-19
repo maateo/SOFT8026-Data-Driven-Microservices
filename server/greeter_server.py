@@ -14,19 +14,13 @@
 """The Python implementation of the GRPC helloworld.Greeter server."""
 import random
 from concurrent import futures
-import datetime
 import logging
 
 import grpc
 
-import Assignment1_pb2
 import Assignment1_pb2_grpc
+import Assignment1_pb2
 
-import redis
-
-import time
-
-import csv
 import pandas as pd
 
 
