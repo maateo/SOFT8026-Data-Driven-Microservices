@@ -42,7 +42,7 @@ def output_tweets(conn):
     html = """
                  <tr>
                     <td>
-                      <div>
+                      <div style="background-color:%s;">
                         <center> 
                           <small><i>@%s</i></small>
             
@@ -70,8 +70,14 @@ def output_tweets(conn):
 
     for key in keys:
         data = conn.hgetall(key)
-        # decoded_data = data.
-        output += html % (data["user"], data["text"], data["id"], data["word_count"], data["time_analysed"])
+
+        background_color = ''
+        if int(data["target"]) == 0:
+            background_color = "coral"
+        elif int(data["target"]) == 4:
+            background_color = "lightblue"
+
+        output += html % (background_color, data["user"], data["text"], data["id"], data["word_count"], data["time_analysed"])
 
     return output
 
@@ -92,8 +98,8 @@ def output_analytics(conn):
                 %s
             
                 <center><h3> Most of... </h3></center>
-                Tweet with most words: %s 
-                <br>
+                <strong>Tweet with most words:</strong> %s 
+                <br><br>
                 Word count: %s
             
               </div>
@@ -120,23 +126,23 @@ def output_analytics(conn):
 
 def combine_outputs(analytics_html, tweets_html):
     output = """
-                <style> 
+            <META HTTP-EQUIV="refresh" CONTENT="2">
+            <style> 
               #wrapper {
                 display: flex;
-                border: 1px solid black;
               }
               #first {
-                border: 1px solid red;
                 width: 30%;
                 padding: 1em;
               }
               #second {
-                border: 1px solid green;
                 width: 70%;
                 padding: 1em;
               }
+              h3 {
+                margin-top: 7em;
+              }
             </style>
-            
             <div id="wrapper">
             """
     output += analytics_html
