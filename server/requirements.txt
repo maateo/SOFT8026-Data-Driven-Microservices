@@ -1,5 +1,3 @@
-flask
-grpcio 
-googleapis-common-protos 
-redis
+grpcio
+googleapis-common-protos
 pandas
