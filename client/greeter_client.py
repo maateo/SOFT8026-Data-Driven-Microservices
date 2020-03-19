@@ -46,7 +46,8 @@ def run():
                 "flag": str(response.flag),
                 "user": str(response.user),
                 "text": str(response.text),
-                "word_length": str(len(re.findall(r'\w+', response.text)))
+                "word_count": str(len(re.findall(r'\w+', response.text))),
+                "time_analysed": str(datetime.datetime.now())
             }
 
             conn.hmset("tweets." + str(datetime.datetime.now()), tweet_data)

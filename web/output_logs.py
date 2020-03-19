@@ -6,27 +6,23 @@ app = Flask(__name__)
 
 @app.route('/')
 def print_logs():
-    output = '''
-        
-    '''
+    output = ''
+
     try:
         conn = redis.StrictRedis(host='redis', port=6379, decode_responses=True)
         # keys = conn.scan_iter("tweets*")
         # keys = sorted(keys, reverse=True)
 
-        output += str(conn.get("3_minute_sentiment"))
+        analytics_html = output_analytics(conn)
+        tweets_html = output_tweets(conn)
 
-        output += "<br><br>"
+        print(type(analytics_html))
+        print(type(tweets_html))
 
-        output += str(conn.get("total_vowel_count"))
-        output += "<br>"
-        output += str(conn.get("total_word_count"))
-
-        output += "<br><br>"
-        output += output_tweets(conn)
-
-        output +=str(conn.get("all_time_high_word_count"))
-        output +=str(conn.get("all_time_high_word"))
+        output += combine_outputs(analytics_html, tweets_html)
+        #
+        # output += analytics_html
+        # output += tweets_html
 
         # datakeys = conn.scan_iter("data*")
         #
@@ -43,6 +39,30 @@ def print_logs():
 
 
 def output_tweets(conn):
+    html = """
+                 <tr>
+                    <td>
+                      <div>
+                        <center> 
+                          <small><i>@%s</i></small>
+            
+                          <br>
+            
+                          %s
+            
+                          <br>
+            
+                          <small>
+                            <strong> Tweet Id: </strong> %s
+                            <strong> Words:</strong> %s
+                            <strong> Time analysed: </strong> %s
+                          </small>
+                        </center>
+                      </div>
+                    </td>
+                  </tr>
+               """
+
     keys = conn.scan_iter("tweets*")
     keys = sorted(keys, reverse=True)
 
@@ -51,12 +71,54 @@ def output_tweets(conn):
     for key in keys:
         data = conn.hgetall(key)
         # decoded_data = data.
-        output += str(data)
+        output += html % (data["user"], data["text"], data["id"], data["word_count"], data["time_analysed"])
 
     return output
 
 
-def combine_outputs():
+def output_analytics(conn):
+    html = """
+              <div id="first">
+            
+                <center><h3> All Time Total </h3></center>
+                Total vowels: %s
+                <br>
+                Total Words: %s 
+                <br>
+                Average vowels per word: %s
+            
+            
+                <center><h3> 3 Minute Sentiment </h3></center>
+                %s
+            
+                <center><h3> Most of... </h3></center>
+                Tweet with most words: %s 
+                <br>
+                Word count: %s
+            
+              </div>
+           """
+
+    total_vowel_count = str(conn.get("total_vowel_count"))
+    total_word_count = str(conn.get("total_word_count"))
+
+    sentiment_list = list(map(int, conn.get("3_minute_sentiment")[1:-1].split(",")))
+
+    sentiment_message = ''
+    if sentiment_list[0] == sentiment_list[4]:
+        sentiment_message = "Just as many positive as negative"
+    elif sentiment_list.index(max(sentiment_list)) == 0:
+        sentiment_message = "Most are negative" + "<br>" + "(" + str(sentiment_list[4]) + " pos vs " + str(sentiment_list[0]) + " neg)"
+    elif sentiment_list.index(max(sentiment_list)) == 4:
+        sentiment_message = "Most are positive" + "<br>" + "(" + str(sentiment_list[4]) + " pos vs " + str(sentiment_list[0]) + " neg)"
+
+    ath_word = str(conn.get("all_time_high_word"))
+    ath_word_count = str(conn.get("all_time_high_word_count"))
+
+    return html % (total_vowel_count, total_word_count, (int(total_vowel_count) / int(total_word_count)), sentiment_message, ath_word, ath_word_count)
+
+
+def combine_outputs(analytics_html, tweets_html):
     output = """
                 <style> 
               #wrapper {
@@ -76,55 +138,21 @@ def combine_outputs():
             </style>
             
             <div id="wrapper">
-            
-              <div id="first">
-            
-                <center><h3> Total Letters </h3></center>
-                Total Letters: 3
-            
-            
-                <center><h3> 3 Minute Sentiment </h3></center>
-                All good 
-            
-                <center><h3> Most of... </h3></center>
-                Tweet with most words: 
-                <br>
-                Word count: 5
-            
-              </div>
-            
+            """
+    output += analytics_html
+    output += """
               <div id="second">
             
                 <table style="width:100%">
-                  <tr>
-                    <td>
-                      <div>
-                        <center> 
-                          <small><i>joe1232</i></small>
-            
-                          <br>
-            
-                          I love this world
-            
-                          <br>
-            
-                          <small>
-                            <strong> Tweet Id: </strong> 75354
-                            <strong> Time analised: </strong> 11:30am
-                            <strong> Words:</strong> 20
-                          </small>
-                        </center>
-                      </div>
-                    </td>
-                  </tr>
+                """
+    output += tweets_html
+    output += """
                 </table>
               </div>
             </div>
-
-
-
-
     """
+
+    return output
 
 
 if __name__ == '__main__':

@@ -55,7 +55,8 @@ def run():
     print()
     print()
 
-
+    string = "hello %s" %"joe"
+    print(string)
     print(tweet)
     print("bye")
 # while True:
