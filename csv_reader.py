@@ -42,6 +42,8 @@ def run():
     print(str(tweet[5].values[0]),)
     print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
 
+    print(type(str(tweet[4].values[0])))
+    print(type(tweet[4].values[0]))
 
     print()
     print()
