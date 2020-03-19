@@ -14,6 +14,8 @@
 """The Python implementation of the GRPC helloworld.Greeter client."""
 
 from __future__ import print_function
+
+import datetime
 import logging
 
 import grpc
@@ -23,6 +25,7 @@ import Assignment1_pb2_grpc
 
 import random
 import time
+import redis
 
 
 def run():
@@ -36,6 +39,16 @@ def run():
             response = stub.SayHello(Assignment1_pb2.HelloRequest(name='Larkin'))
             # total_length += len(response.message)
             # print("real-time character count: " + str(total_length))
+
+        try:
+            conn = redis.StrictRedis(host='redis', port=6379)
+
+            conn.set("tweets." + str(datetime.datetime.now()), response.text)
+
+        except Exception as ex:
+            print('Error:', ex)
+
+
         print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
         print("Greeter client received: ", response.target, response.id, response.date, response.flag, response.user, response.text, flush=True)
         print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAA")

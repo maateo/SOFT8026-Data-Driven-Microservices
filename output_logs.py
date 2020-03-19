@@ -10,7 +10,10 @@ def print_logs():
     output = ''
     try:
         conn = redis.StrictRedis(host='redis', port=6379)
-        for key in conn.scan_iter("log.greeter_server*"):
+        keys = conn.scan_iter("tweets*")
+        keys = sorted(keys, reverse=True)
+
+        for key in keys:
             value = str(conn.get(key))
             output += str(key) + " AAAA " + value + '<br>'  # Style the output lines
     except Exception as ex:
