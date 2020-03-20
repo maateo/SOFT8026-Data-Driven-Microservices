@@ -4,7 +4,7 @@ import grpc
 import Assignment1_pb2 as Assignment1__pb2
 
 
-class GreeterStub(object):
+class TweetStub(object):
   """The greeting service definition.
   """
 
@@ -14,18 +14,18 @@ class GreeterStub(object):
     Args:
       channel: A grpc.Channel.
     """
-    self.SayHello = channel.unary_unary(
-        '/helloworld.Greeter/SayHello',
-        request_serializer=Assignment1__pb2.HelloRequest.SerializeToString,
-        response_deserializer=Assignment1__pb2.HelloReply.FromString,
+    self.RequestATweet = channel.unary_unary(
+        '/helloworld.Tweet/RequestATweet',
+        request_serializer=Assignment1__pb2.TweetRequest.SerializeToString,
+        response_deserializer=Assignment1__pb2.TweetReply.FromString,
         )
 
 
-class GreeterServicer(object):
+class TweetServicer(object):
   """The greeting service definition.
   """
 
-  def SayHello(self, request, context):
+  def RequestATweet(self, request, context):
     """Sends a greeting
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -33,14 +33,14 @@ class GreeterServicer(object):
     raise NotImplementedError('Method not implemented!')
 
 
-def add_GreeterServicer_to_server(servicer, server):
+def add_TweetServicer_to_server(servicer, server):
   rpc_method_handlers = {
-      'SayHello': grpc.unary_unary_rpc_method_handler(
-          servicer.SayHello,
-          request_deserializer=Assignment1__pb2.HelloRequest.FromString,
-          response_serializer=Assignment1__pb2.HelloReply.SerializeToString,
+      'RequestATweet': grpc.unary_unary_rpc_method_handler(
+          servicer.RequestATweet,
+          request_deserializer=Assignment1__pb2.TweetRequest.FromString,
+          response_serializer=Assignment1__pb2.TweetReply.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(
-      'helloworld.Greeter', rpc_method_handlers)
+      'helloworld.Tweet', rpc_method_handlers)
   server.add_generic_rpc_handlers((generic_handler,))

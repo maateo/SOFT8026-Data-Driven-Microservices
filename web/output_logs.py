@@ -10,29 +10,12 @@ def print_logs():
 
     try:
         conn = redis.StrictRedis(host='redis', port=6379, decode_responses=True)
-        # keys = conn.scan_iter("tweets*")
-        # keys = sorted(keys, reverse=True)
 
         analytics_html = output_analytics(conn)
         tweets_html = output_tweets(conn)
 
-        print(type(analytics_html))
-        print(type(tweets_html))
-
         output += combine_outputs(analytics_html, tweets_html)
-        #
-        # output += analytics_html
-        # output += tweets_html
 
-        # datakeys = conn.scan_iter("data*")
-        #
-        # for key in datakeys:
-        #     data = conn.hgetall(key)
-        #
-        # for key in keys:
-        #     value = str(conn.get(key))
-        #     # output += str(key) + " AAAA " + value + '<br>'  # Style the output lines
-        #     output += str(data) + " AAAA " + str(data) + '<br>'  # Style the output lines
     except Exception as ex:
         output = 'Error:' + str(ex)
     return output

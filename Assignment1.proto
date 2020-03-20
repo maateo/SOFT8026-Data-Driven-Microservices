@@ -22,18 +22,17 @@ option objc_class_prefix = "HLW";
 package helloworld;
 
 // The greeting service definition.
-service Greeter {
+service Tweet {
   // Sends a greeting
-  rpc SayHello (HelloRequest) returns (HelloReply) {}
+  rpc RequestATweet (TweetRequest) returns (TweetReply) {}
 }
 
 // The request message containing the user's name.
-message HelloRequest {
-  string name = 1;
+message TweetRequest {
 }
 
-// The response message containing the greetings
-message HelloReply {
+// The response message containing tweet data
+message TweetReply {
   string target = 1;
   string id = 2;
   string date = 3;
