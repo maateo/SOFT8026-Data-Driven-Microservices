@@ -17,7 +17,8 @@ def print_logs():
         output += combine_outputs(analytics_html, tweets_html)
 
     except Exception as ex:
-        output = 'Error:' + str(ex)
+        output = 'Error:' + str(ex) + '<META HTTP-EQUIV="refresh" CONTENT="1">'
+
     return output
 
 
@@ -104,12 +105,12 @@ def output_analytics(conn):
     ath_word = str(conn.get("all_time_high_word"))
     ath_word_count = str(conn.get("all_time_high_word_count"))
 
-    return html % (total_vowel_count, total_word_count, (int(total_vowel_count) / int(total_word_count)), sentiment_message, ath_word, ath_word_count)
+    return html % (total_vowel_count, total_word_count, round(int(total_vowel_count) / int(total_word_count), 2), sentiment_message, ath_word, ath_word_count)
 
 
 def combine_outputs(analytics_html, tweets_html):
     output = """
-            <META HTTP-EQUIV="refresh" CONTENT="2">
+            <META HTTP-EQUIV="refresh" CONTENT="1.5">
             <style> 
               #wrapper {
                 display: flex;
@@ -123,7 +124,7 @@ def combine_outputs(analytics_html, tweets_html):
                 padding: 1em;
               }
               h3 {
-                margin-top: 7em;
+                margin-top: 5em;
               }
             </style>
             <div id="wrapper">

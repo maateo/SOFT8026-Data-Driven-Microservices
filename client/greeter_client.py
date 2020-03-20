@@ -43,7 +43,7 @@ def run():
             print('Error:', ex)
 
         print("Analysis client received: ", response.target, response.id, response.date, response.flag, response.user, response.text, flush=True)
-        time.sleep(random.randint(1, 3))
+        time.sleep(1 / random.uniform(0.7, 3))  # Sleep for random amount, so number of tweets is anywhere between 1 and 3 per second, with mostly 2 per second
 
 
 def analise_totals(conn, text):
