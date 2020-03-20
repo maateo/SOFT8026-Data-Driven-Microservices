@@ -1,4 +1,4 @@
-/server/sentiment140/
+/tweet-server/sentiment140/
 /venv/
 
 *.pyc
