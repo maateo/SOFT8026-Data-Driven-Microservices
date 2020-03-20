@@ -1,4 +1,5 @@
-[This code's documentation lives on the grpc.io site.](https://grpc.io/docs/quickstart/python.html)
+# Running the project
+Please place the `training.1600000.processed.noemoticon.csv` file into the root of this project. The file can be downloaded from https://www.kaggle.com/kazanova/sentiment140/data.
 
 # Building proto files
 ### Adapted from: https://grpc.io/docs/quickstart/python/
@@ -17,4 +18,5 @@ python -m pip install grpcio-tools
 # Super useful Docker commands
  - `sudo docker system prune`
  - `sudo docker-compose up --build`
+ - `sudo docker stop $(sudo docker ps -a -q)` - Stops all running containers
  

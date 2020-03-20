@@ -1,4 +1,7 @@
-/server/sentiment140/
 /venv/
+
+# Tweet Files
+/tweet-server/sentiment140/
+/training.1600000.processed.noemoticon.csv
 
 *.pyc

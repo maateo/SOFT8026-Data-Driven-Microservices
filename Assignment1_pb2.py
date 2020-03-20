@@ -18,26 +18,19 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='helloworld',
   syntax='proto3',
   serialized_options=b'\n\033io.grpc.examples.helloworldB\017HelloWorldProtoP\001\242\002\003HLW',
-  serialized_pb=b'\n\x11\x41ssignment1.proto\x12\nhelloworld\"\x1c\n\x0cHelloRequest\x12\x0c\n\x04name\x18\x01 \x01(\t\"`\n\nHelloReply\x12\x0e\n\x06target\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\t\x12\x0c\n\x04\x64\x61te\x18\x03 \x01(\t\x12\x0c\n\x04\x66lag\x18\x04 \x01(\t\x12\x0c\n\x04user\x18\x05 \x01(\t\x12\x0c\n\x04text\x18\x06 \x01(\t2I\n\x07Greeter\x12>\n\x08SayHello\x12\x18.helloworld.HelloRequest\x1a\x16.helloworld.HelloReply\"\x00\x42\x36\n\x1bio.grpc.examples.helloworldB\x0fHelloWorldProtoP\x01\xa2\x02\x03HLWb\x06proto3'
+  serialized_pb=b'\n\x11\x41ssignment1.proto\x12\nhelloworld\"\x0e\n\x0cTweetRequest\"`\n\nTweetReply\x12\x0e\n\x06target\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\t\x12\x0c\n\x04\x64\x61te\x18\x03 \x01(\t\x12\x0c\n\x04\x66lag\x18\x04 \x01(\t\x12\x0c\n\x04user\x18\x05 \x01(\t\x12\x0c\n\x04text\x18\x06 \x01(\t2L\n\x05Tweet\x12\x43\n\rRequestATweet\x12\x18.helloworld.TweetRequest\x1a\x16.helloworld.TweetReply\"\x00\x42\x36\n\x1bio.grpc.examples.helloworldB\x0fHelloWorldProtoP\x01\xa2\x02\x03HLWb\x06proto3'
 )
 
 
 
 
-_HELLOREQUEST = _descriptor.Descriptor(
-  name='HelloRequest',
-  full_name='helloworld.HelloRequest',
+_TWEETREQUEST = _descriptor.Descriptor(
+  name='TweetRequest',
+  full_name='helloworld.TweetRequest',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
-    _descriptor.FieldDescriptor(
-      name='name', full_name='helloworld.HelloRequest.name', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -51,54 +44,54 @@ _HELLOREQUEST = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=33,
-  serialized_end=61,
+  serialized_end=47,
 )
 
 
-_HELLOREPLY = _descriptor.Descriptor(
-  name='HelloReply',
-  full_name='helloworld.HelloReply',
+_TWEETREPLY = _descriptor.Descriptor(
+  name='TweetReply',
+  full_name='helloworld.TweetReply',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='target', full_name='helloworld.HelloReply.target', index=0,
+      name='target', full_name='helloworld.TweetReply.target', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='id', full_name='helloworld.HelloReply.id', index=1,
+      name='id', full_name='helloworld.TweetReply.id', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='date', full_name='helloworld.HelloReply.date', index=2,
+      name='date', full_name='helloworld.TweetReply.date', index=2,
       number=3, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='flag', full_name='helloworld.HelloReply.flag', index=3,
+      name='flag', full_name='helloworld.TweetReply.flag', index=3,
       number=4, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='user', full_name='helloworld.HelloReply.user', index=4,
+      name='user', full_name='helloworld.TweetReply.user', index=4,
       number=5, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='text', full_name='helloworld.HelloReply.text', index=5,
+      name='text', full_name='helloworld.TweetReply.text', index=5,
       number=6, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -116,52 +109,52 @@ _HELLOREPLY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=63,
-  serialized_end=159,
+  serialized_start=49,
+  serialized_end=145,
 )
 
-DESCRIPTOR.message_types_by_name['HelloRequest'] = _HELLOREQUEST
-DESCRIPTOR.message_types_by_name['HelloReply'] = _HELLOREPLY
+DESCRIPTOR.message_types_by_name['TweetRequest'] = _TWEETREQUEST
+DESCRIPTOR.message_types_by_name['TweetReply'] = _TWEETREPLY
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
-HelloRequest = _reflection.GeneratedProtocolMessageType('HelloRequest', (_message.Message,), {
-  'DESCRIPTOR' : _HELLOREQUEST,
+TweetRequest = _reflection.GeneratedProtocolMessageType('TweetRequest', (_message.Message,), {
+  'DESCRIPTOR' : _TWEETREQUEST,
   '__module__' : 'Assignment1_pb2'
-  # @@protoc_insertion_point(class_scope:helloworld.HelloRequest)
+  # @@protoc_insertion_point(class_scope:helloworld.TweetRequest)
   })
-_sym_db.RegisterMessage(HelloRequest)
+_sym_db.RegisterMessage(TweetRequest)
 
-HelloReply = _reflection.GeneratedProtocolMessageType('HelloReply', (_message.Message,), {
-  'DESCRIPTOR' : _HELLOREPLY,
+TweetReply = _reflection.GeneratedProtocolMessageType('TweetReply', (_message.Message,), {
+  'DESCRIPTOR' : _TWEETREPLY,
   '__module__' : 'Assignment1_pb2'
-  # @@protoc_insertion_point(class_scope:helloworld.HelloReply)
+  # @@protoc_insertion_point(class_scope:helloworld.TweetReply)
   })
-_sym_db.RegisterMessage(HelloReply)
+_sym_db.RegisterMessage(TweetReply)
 
 
 DESCRIPTOR._options = None
 
-_GREETER = _descriptor.ServiceDescriptor(
-  name='Greeter',
-  full_name='helloworld.Greeter',
+_TWEET = _descriptor.ServiceDescriptor(
+  name='Tweet',
+  full_name='helloworld.Tweet',
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=161,
-  serialized_end=234,
+  serialized_start=147,
+  serialized_end=223,
   methods=[
   _descriptor.MethodDescriptor(
-    name='SayHello',
-    full_name='helloworld.Greeter.SayHello',
+    name='RequestATweet',
+    full_name='helloworld.Tweet.RequestATweet',
     index=0,
     containing_service=None,
-    input_type=_HELLOREQUEST,
-    output_type=_HELLOREPLY,
+    input_type=_TWEETREQUEST,
+    output_type=_TWEETREPLY,
     serialized_options=None,
   ),
 ])
-_sym_db.RegisterServiceDescriptor(_GREETER)
+_sym_db.RegisterServiceDescriptor(_TWEET)
 
-DESCRIPTOR.services_by_name['Greeter'] = _GREETER
+DESCRIPTOR.services_by_name['Tweet'] = _TWEET
 
 # @@protoc_insertion_point(module_scope)

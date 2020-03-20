@@ -10,31 +10,15 @@ def print_logs():
 
     try:
         conn = redis.StrictRedis(host='redis', port=6379, decode_responses=True)
-        # keys = conn.scan_iter("tweets*")
-        # keys = sorted(keys, reverse=True)
 
         analytics_html = output_analytics(conn)
         tweets_html = output_tweets(conn)
 
-        print(type(analytics_html))
-        print(type(tweets_html))
-
         output += combine_outputs(analytics_html, tweets_html)
-        #
-        # output += analytics_html
-        # output += tweets_html
 
-        # datakeys = conn.scan_iter("data*")
-        #
-        # for key in datakeys:
-        #     data = conn.hgetall(key)
-        #
-        # for key in keys:
-        #     value = str(conn.get(key))
-        #     # output += str(key) + " AAAA " + value + '<br>'  # Style the output lines
-        #     output += str(data) + " AAAA " + str(data) + '<br>'  # Style the output lines
     except Exception as ex:
-        output = 'Error:' + str(ex)
+        output = 'Error:' + str(ex) + '<META HTTP-EQUIV="refresh" CONTENT="1">'
+
     return output
 
 
@@ -43,7 +27,7 @@ def output_tweets(conn):
                  <tr>
                     <td>
                       <div style="background-color:%s;">
-                        <center> 
+                        <div style="text-align: center;"> 
                           <small><i>@%s</i></small>
             
                           <br>
@@ -57,7 +41,7 @@ def output_tweets(conn):
                             <strong> Words:</strong> %s
                             <strong> Time analysed: </strong> %s
                           </small>
-                        </center>
+                        </div>
                       </div>
                     </td>
                   </tr>
@@ -86,7 +70,7 @@ def output_analytics(conn):
     html = """
               <div id="first">
             
-                <center><h3> All Time Total </h3></center>
+                <div style="text-align: center;"><h3> All Time Total </h3></div>
                 Total vowels: %s
                 <br>
                 Total Words: %s 
@@ -94,10 +78,10 @@ def output_analytics(conn):
                 Average vowels per word: %s
             
             
-                <center><h3> 3 Minute Sentiment </h3></center>
+                <div style="text-align: center;"><h3> 3 Minute Sentiment </h3></div>
                 %s
             
-                <center><h3> Most of... </h3></center>
+                <div style="text-align: center;"><h3> Most of... </h3></div>
                 <strong>Tweet with most words:</strong> %s 
                 <br><br>
                 Word count: %s
@@ -112,7 +96,7 @@ def output_analytics(conn):
 
     sentiment_message = ''
     if sentiment_list[0] == sentiment_list[4]:
-        sentiment_message = "Just as many positive as negative"
+        sentiment_message = "Just as many positive as negative" + "<br>" + "(" + str(sentiment_list[4]) + " pos and " + str(sentiment_list[0]) + " neg)"
     elif sentiment_list.index(max(sentiment_list)) == 0:
         sentiment_message = "Most are negative" + "<br>" + "(" + str(sentiment_list[4]) + " pos vs " + str(sentiment_list[0]) + " neg)"
     elif sentiment_list.index(max(sentiment_list)) == 4:
@@ -121,12 +105,12 @@ def output_analytics(conn):
     ath_word = str(conn.get("all_time_high_word"))
     ath_word_count = str(conn.get("all_time_high_word_count"))
 
-    return html % (total_vowel_count, total_word_count, (int(total_vowel_count) / int(total_word_count)), sentiment_message, ath_word, ath_word_count)
+    return html % (total_vowel_count, total_word_count, round(int(total_vowel_count) / int(total_word_count), 2), sentiment_message, ath_word, ath_word_count)
 
 
 def combine_outputs(analytics_html, tweets_html):
     output = """
-            <META HTTP-EQUIV="refresh" CONTENT="2">
+            <META HTTP-EQUIV="refresh" CONTENT="1.5">
             <style> 
               #wrapper {
                 display: flex;
@@ -140,7 +124,7 @@ def combine_outputs(analytics_html, tweets_html):
                 padding: 1em;
               }
               h3 {
-                margin-top: 7em;
+                margin-top: 5em;
               }
             </style>
             <div id="wrapper">
