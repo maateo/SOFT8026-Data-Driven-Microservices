@@ -27,7 +27,7 @@ def output_tweets(conn):
                  <tr>
                     <td>
                       <div style="background-color:%s;">
-                        <center> 
+                        <div style="text-align: center;"> 
                           <small><i>@%s</i></small>
             
                           <br>
@@ -41,7 +41,7 @@ def output_tweets(conn):
                             <strong> Words:</strong> %s
                             <strong> Time analysed: </strong> %s
                           </small>
-                        </center>
+                        </div>
                       </div>
                     </td>
                   </tr>
@@ -70,7 +70,7 @@ def output_analytics(conn):
     html = """
               <div id="first">
             
-                <center><h3> All Time Total </h3></center>
+                <div style="text-align: center;"><h3> All Time Total </h3></div>
                 Total vowels: %s
                 <br>
                 Total Words: %s 
@@ -78,10 +78,10 @@ def output_analytics(conn):
                 Average vowels per word: %s
             
             
-                <center><h3> 3 Minute Sentiment </h3></center>
+                <div style="text-align: center;"><h3> 3 Minute Sentiment </h3></div>
                 %s
             
-                <center><h3> Most of... </h3></center>
+                <div style="text-align: center;"><h3> Most of... </h3></div>
                 <strong>Tweet with most words:</strong> %s 
                 <br><br>
                 Word count: %s
