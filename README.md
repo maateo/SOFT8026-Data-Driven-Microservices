@@ -18,4 +18,5 @@ python -m pip install grpcio-tools
 # Super useful Docker commands
  - `sudo docker system prune`
  - `sudo docker-compose up --build`
+ - `sudo docker stop $(sudo docker ps -a -q)` - Stops all running containers
  
