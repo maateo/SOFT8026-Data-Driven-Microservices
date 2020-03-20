@@ -6,6 +6,7 @@ WORKDIR /app
 
 # Copy the current host directory contents into the container at /app
 COPY /tweet-server /app
+COPY training.1600000.processed.noemoticon.csv /app
 COPY Assignment1_pb2.py /app
 COPY Assignment1_pb2_grpc.py /app
 

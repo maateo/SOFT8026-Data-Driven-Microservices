@@ -12,7 +12,7 @@ import Assignment1_pb2_grpc
 class TweetServer(Assignment1_pb2_grpc.TweetServicer):
 
     def __init__(self):
-        self.tweets = pd.read_csv("sentiment140/training.1600000.processed.noemoticon.csv", encoding="latin")
+        self.tweets = pd.read_csv("training.1600000.processed.noemoticon.csv", encoding="latin")
 
     def RequestATweet(self, request, context):
         random_tweet = self.tweets.iloc[random.randint(0, self.tweets.shape[0])]

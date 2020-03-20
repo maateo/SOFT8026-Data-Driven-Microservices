@@ -1,3 +1,6 @@
+# Running the project
+Please place the `training.1600000.processed.noemoticon.csv` file into the root of this project. The file can be downloaded from https://www.kaggle.com/kazanova/sentiment140/data.
+
 # Building proto files
 ### Adapted from: https://grpc.io/docs/quickstart/python/
 
