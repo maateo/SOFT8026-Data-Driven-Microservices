@@ -96,7 +96,7 @@ def output_analytics(conn):
 
     sentiment_message = ''
     if sentiment_list[0] == sentiment_list[4]:
-        sentiment_message = "Just as many positive as negative"
+        sentiment_message = "Just as many positive as negative" + "<br>" + "(" + str(sentiment_list[4]) + " pos and " + str(sentiment_list[0]) + " neg)"
     elif sentiment_list.index(max(sentiment_list)) == 0:
         sentiment_message = "Most are negative" + "<br>" + "(" + str(sentiment_list[4]) + " pos vs " + str(sentiment_list[0]) + " neg)"
     elif sentiment_list.index(max(sentiment_list)) == 4:
