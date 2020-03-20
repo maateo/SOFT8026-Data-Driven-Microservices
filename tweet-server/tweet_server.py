@@ -9,7 +9,7 @@ import Assignment1_pb2
 import Assignment1_pb2_grpc
 
 
-class Greeter(Assignment1_pb2_grpc.TweetServicer):
+class TweetServer(Assignment1_pb2_grpc.TweetServicer):
 
     def __init__(self):
         self.tweets = pd.read_csv("sentiment140/training.1600000.processed.noemoticon.csv", encoding="latin")
@@ -31,7 +31,7 @@ class Greeter(Assignment1_pb2_grpc.TweetServicer):
 
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
-    Assignment1_pb2_grpc.add_TweetServicer_to_server(Greeter(), server)
+    Assignment1_pb2_grpc.add_TweetServicer_to_server(TweetServer(), server)
     server.add_insecure_port('[::]:50051')
     server.start()
     server.wait_for_termination()
