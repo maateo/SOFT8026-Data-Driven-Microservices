@@ -14,36 +14,36 @@ import Assignment1_pb2_grpc
 
 
 def run():
-    while True:
         with grpc.insecure_channel('tweet_server:50051') as channel:
             stub = Assignment1_pb2_grpc.TweetStub(channel)
-            response = stub.RequestATweet(Assignment1_pb2.TweetRequest())
+            # response = stub.RequestATweet(Assignment1_pb2.TweetRequest())
 
-        try:
-            conn = redis.StrictRedis(host='redis', port=6379)
-            tweet_data = {
-                "target": str(response.target),
-                "id": str(response.id),
-                "date": str(response.date),
-                "flag": str(response.flag),
-                "user": str(response.user),
-                "text": str(response.text),
-                "word_count": str(len(re.findall(r'\w+', response.text))),
-                "time_analysed": str(datetime.datetime.now())
-            }
+            for tweet in stub.RequestATweet(Assignment1_pb2.TweetRequest()):
+                try:
+                    conn = redis.StrictRedis(host='redis', port=6379)
+                    tweet_data = {
+                        "target": str(tweet.target),
+                        "id": str(tweet.id),
+                        "date": str(tweet.date),
+                        "flag": str(tweet.flag),
+                        "user": str(tweet.user),
+                        "text": str(tweet.text),
+                        "word_count": str(len(re.findall(r'\w+', tweet.text))),
+                        "time_analysed": str(datetime.datetime.now())
+                    }
 
-            conn.hmset("tweets." + str(datetime.datetime.now()), tweet_data)
-            conn.set("3md." + str(datetime.datetime.now()), response.target, ex=180)
+                    conn.hmset("tweets." + str(datetime.datetime.now()), tweet_data)
+                    conn.set("3md." + str(datetime.datetime.now()), tweet.target, ex=180)
 
-            analise_totals(conn, response.text)
-            analise_most_of(conn, response.text)
-            analise_last_3_minutes(conn)
+                    analise_totals(conn, tweet.text)
+                    analise_most_of(conn, tweet.text)
+                    analise_last_3_minutes(conn)
 
-        except Exception as ex:
-            print('Error:', ex)
+                except Exception as ex:
+                    print('Error:', ex)
 
-        print("Analysis client received: ", response.target, response.id, response.date, response.flag, response.user, response.text, flush=True)
-        time.sleep(1 / random.uniform(0.7, 3))  # Sleep for random amount, so number of tweets is anywhere between 1 and 3 per second, with mostly 2 per second
+                print("Analysis client received: ", tweet.target, tweet.id, tweet.date, tweet.flag, tweet.user, tweet.text, flush=True)
+                time.sleep(1 / random.uniform(0.7, 3))  # Sleep for random amount, so number of tweets is anywhere between 1 and 3 per second, with mostly 2 per second
 
 
 def analise_totals(conn, text):

@@ -18,7 +18,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='helloworld',
   syntax='proto3',
   serialized_options=b'\n\033io.grpc.examples.helloworldB\017HelloWorldProtoP\001\242\002\003HLW',
-  serialized_pb=b'\n\x11\x41ssignment1.proto\x12\nhelloworld\"\x0e\n\x0cTweetRequest\"`\n\nTweetReply\x12\x0e\n\x06target\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\t\x12\x0c\n\x04\x64\x61te\x18\x03 \x01(\t\x12\x0c\n\x04\x66lag\x18\x04 \x01(\t\x12\x0c\n\x04user\x18\x05 \x01(\t\x12\x0c\n\x04text\x18\x06 \x01(\t2L\n\x05Tweet\x12\x43\n\rRequestATweet\x12\x18.helloworld.TweetRequest\x1a\x16.helloworld.TweetReply\"\x00\x42\x36\n\x1bio.grpc.examples.helloworldB\x0fHelloWorldProtoP\x01\xa2\x02\x03HLWb\x06proto3'
+  serialized_pb=b'\n\x11\x41ssignment1.proto\x12\nhelloworld\"\x0e\n\x0cTweetRequest\"`\n\nTweetReply\x12\x0e\n\x06target\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\t\x12\x0c\n\x04\x64\x61te\x18\x03 \x01(\t\x12\x0c\n\x04\x66lag\x18\x04 \x01(\t\x12\x0c\n\x04user\x18\x05 \x01(\t\x12\x0c\n\x04text\x18\x06 \x01(\t2N\n\x05Tweet\x12\x45\n\rRequestATweet\x12\x18.helloworld.TweetRequest\x1a\x16.helloworld.TweetReply\"\x00\x30\x01\x42\x36\n\x1bio.grpc.examples.helloworldB\x0fHelloWorldProtoP\x01\xa2\x02\x03HLWb\x06proto3'
 )
 
 
@@ -141,7 +141,7 @@ _TWEET = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   serialized_start=147,
-  serialized_end=223,
+  serialized_end=225,
   methods=[
   _descriptor.MethodDescriptor(
     name='RequestATweet',

@@ -26,7 +26,7 @@ class TweetServer(Assignment1_pb2_grpc.TweetServicer):
             text=str(random_tweet[5])
         )
 
-        return response  # TODO: Try a generator
+        yield response
 
 
 def serve():

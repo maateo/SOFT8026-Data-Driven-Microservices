@@ -14,7 +14,7 @@ class TweetStub(object):
     Args:
       channel: A grpc.Channel.
     """
-    self.RequestATweet = channel.unary_unary(
+    self.RequestATweet = channel.unary_stream(
         '/helloworld.Tweet/RequestATweet',
         request_serializer=Assignment1__pb2.TweetRequest.SerializeToString,
         response_deserializer=Assignment1__pb2.TweetReply.FromString,
@@ -26,7 +26,7 @@ class TweetServicer(object):
   """
 
   def RequestATweet(self, request, context):
-    """Sends a greeting
+    """Sends a tweet
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
@@ -35,7 +35,7 @@ class TweetServicer(object):
 
 def add_TweetServicer_to_server(servicer, server):
   rpc_method_handlers = {
-      'RequestATweet': grpc.unary_unary_rpc_method_handler(
+      'RequestATweet': grpc.unary_stream_rpc_method_handler(
           servicer.RequestATweet,
           request_deserializer=Assignment1__pb2.TweetRequest.FromString,
           response_serializer=Assignment1__pb2.TweetReply.SerializeToString,
