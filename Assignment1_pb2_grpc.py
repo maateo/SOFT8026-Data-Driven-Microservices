@@ -15,7 +15,7 @@ class TweetStub(object):
       channel: A grpc.Channel.
     """
     self.RequestTweets = channel.unary_stream(
-        '/helloworld.Tweet/RequestTweets',
+        '/Tweet/RequestTweets',
         request_serializer=Assignment1__pb2.TweetRequest.SerializeToString,
         response_deserializer=Assignment1__pb2.TweetReply.FromString,
         )
@@ -42,5 +42,5 @@ def add_TweetServicer_to_server(servicer, server):
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(
-      'helloworld.Tweet', rpc_method_handlers)
+      'Tweet', rpc_method_handlers)
   server.add_generic_rpc_handlers((generic_handler,))
