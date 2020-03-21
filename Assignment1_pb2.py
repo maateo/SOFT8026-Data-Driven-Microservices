@@ -18,7 +18,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='helloworld',
   syntax='proto3',
   serialized_options=b'\n\033io.grpc.examples.helloworldB\017HelloWorldProtoP\001\242\002\003HLW',
-  serialized_pb=b'\n\x11\x41ssignment1.proto\x12\nhelloworld\"(\n\x0cTweetRequest\x12\x18\n\x10number_of_tweets\x18\x01 \x01(\t\"`\n\nTweetReply\x12\x0e\n\x06target\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\t\x12\x0c\n\x04\x64\x61te\x18\x03 \x01(\t\x12\x0c\n\x04\x66lag\x18\x04 \x01(\t\x12\x0c\n\x04user\x18\x05 \x01(\t\x12\x0c\n\x04text\x18\x06 \x01(\t2N\n\x05Tweet\x12\x45\n\rRequestTweets\x12\x18.helloworld.TweetRequest\x1a\x16.helloworld.TweetReply\"\x00\x30\x01\x42\x36\n\x1bio.grpc.examples.helloworldB\x0fHelloWorldProtoP\x01\xa2\x02\x03HLWb\x06proto3'
+  serialized_pb=b'\n\x11\x41ssignment1.proto\x12\nhelloworld\"(\n\x0cTweetRequest\x12\x18\n\x10number_of_tweets\x18\x01 \x01(\x05\"`\n\nTweetReply\x12\x0e\n\x06target\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\t\x12\x0c\n\x04\x64\x61te\x18\x03 \x01(\t\x12\x0c\n\x04\x66lag\x18\x04 \x01(\t\x12\x0c\n\x04user\x18\x05 \x01(\t\x12\x0c\n\x04text\x18\x06 \x01(\t2N\n\x05Tweet\x12\x45\n\rRequestTweets\x12\x18.helloworld.TweetRequest\x1a\x16.helloworld.TweetReply\"\x00\x30\x01\x42\x36\n\x1bio.grpc.examples.helloworldB\x0fHelloWorldProtoP\x01\xa2\x02\x03HLWb\x06proto3'
 )
 
 
@@ -33,8 +33,8 @@ _TWEETREQUEST = _descriptor.Descriptor(
   fields=[
     _descriptor.FieldDescriptor(
       name='number_of_tweets', full_name='helloworld.TweetRequest.number_of_tweets', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=b"".decode('utf-8'),
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),

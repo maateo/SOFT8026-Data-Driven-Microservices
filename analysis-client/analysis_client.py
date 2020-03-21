@@ -16,10 +16,9 @@ import Assignment1_pb2_grpc
 def run():
         with grpc.insecure_channel('tweet_server:50051') as channel:
             stub = Assignment1_pb2_grpc.TweetStub(channel)
-            # response = stub.RequestATweet(Assignment1_pb2.TweetRequest())
 
             while True:
-                for tweet in stub.RequestTweets(Assignment1_pb2.TweetRequest(number_of_tweets=str(random.randint(1, 15)))):
+                for tweet in stub.RequestTweets(Assignment1_pb2.TweetRequest(number_of_tweets=random.randint(1, 15))):
                     try:
                         conn = redis.StrictRedis(host='redis', port=6379)
                         tweet_data = {

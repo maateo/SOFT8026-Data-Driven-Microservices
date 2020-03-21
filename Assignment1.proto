@@ -15,7 +15,7 @@ service Tweet {
 
 // The request message
 message TweetRequest {
-  string number_of_tweets = 1;
+  int32 number_of_tweets = 1;
 }
 
 // The response message containing tweet data
