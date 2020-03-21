@@ -15,6 +15,10 @@ python -m pip install grpcio-tools
 `python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. Assignment1.proto`
 
 
+# gRPC streaming
+https://github.com/grpc/grpc.github.io/blob/master/docs/tutorials/basic/python.md
+
+
 # Super useful Docker commands
  - `sudo docker system prune`
  - `sudo docker-compose up --build`
