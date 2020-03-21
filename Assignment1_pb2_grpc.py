@@ -5,7 +5,7 @@ import Assignment1_pb2 as Assignment1__pb2
 
 
 class TweetStub(object):
-  """The greeting service definition.
+  """The tweet service definition.
   """
 
   def __init__(self, channel):
@@ -22,11 +22,11 @@ class TweetStub(object):
 
 
 class TweetServicer(object):
-  """The greeting service definition.
+  """The tweet service definition.
   """
 
   def RequestATweet(self, request, context):
-    """Sends a tweet
+    """streams tweets
     """
     context.set_code(grpc.StatusCode.UNIMPLEMENTED)
     context.set_details('Method not implemented!')
