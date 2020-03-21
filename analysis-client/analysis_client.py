@@ -19,7 +19,7 @@ def run():
             # response = stub.RequestATweet(Assignment1_pb2.TweetRequest())
 
             while True:
-                for tweet in stub.RequestATweet(Assignment1_pb2.TweetRequest(number_of_tweets=str(5))):
+                for tweet in stub.RequestTweets(Assignment1_pb2.TweetRequest(number_of_tweets=str(random.randint(1, 15)))):
                     try:
                         conn = redis.StrictRedis(host='redis', port=6379)
                         tweet_data = {

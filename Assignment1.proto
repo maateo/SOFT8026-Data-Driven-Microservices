@@ -10,7 +10,7 @@ package helloworld;
 // The tweet service definition.
 service Tweet {
   // streams tweets
-  rpc RequestATweet (TweetRequest) returns (stream TweetReply) {}
+  rpc RequestTweets (TweetRequest) returns (stream TweetReply) {}
 }
 
 // The request message

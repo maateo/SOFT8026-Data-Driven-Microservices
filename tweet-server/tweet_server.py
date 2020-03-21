@@ -15,7 +15,7 @@ class TweetServer(Assignment1_pb2_grpc.TweetServicer):
     def __init__(self):
         self.tweets = pd.read_csv("training.1600000.processed.noemoticon.csv", encoding="latin")
 
-    def RequestATweet(self, request, context):
+    def RequestTweets(self, request, context):
         print("Received a request for %s tweets" % request.number_of_tweets, flush=True)
 
         for _ in range(int(request.number_of_tweets)):
