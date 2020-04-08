@@ -20,3 +20,25 @@ message TweetReply {
   string user = 5;
   string text = 6;
 }
+
+
+// The Reddit Post service definition.
+service Reddit {
+  // streams tweets
+  rpc RequestRedditPosts (RedditPostRequest) returns (stream RedditPostReply) {}
+}
+
+// The request message
+message RedditPostRequest {
+  int32 number_of_reddit_posts = 1;
+}
+
+// The response message containing reddit post data
+message RedditPostReply {
+  string id = 1;
+  string title = 2;
+  string score = 3;
+  string author = 4;
+  string full_link = 5;
+  string over_18 = 6;
+}

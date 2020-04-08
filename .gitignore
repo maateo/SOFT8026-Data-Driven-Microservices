@@ -4,4 +4,7 @@
 /tweet-server/sentiment140/
 /training.1600000.processed.noemoticon.csv
 
+# Reddit files
+/r_dataisbeautiful_posts.csv
+
 *.pyc

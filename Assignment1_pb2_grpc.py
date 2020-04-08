@@ -5,42 +5,128 @@ import Assignment1_pb2 as Assignment1__pb2
 
 
 class TweetStub(object):
-  """The tweet service definition.
-  """
-
-  def __init__(self, channel):
-    """Constructor.
-
-    Args:
-      channel: A grpc.Channel.
+    """The tweet service definition.
     """
-    self.RequestTweets = channel.unary_stream(
-        '/Tweet/RequestTweets',
-        request_serializer=Assignment1__pb2.TweetRequest.SerializeToString,
-        response_deserializer=Assignment1__pb2.TweetReply.FromString,
-        )
+
+    def __init__(self, channel):
+        """Constructor.
+
+        Args:
+            channel: A grpc.Channel.
+        """
+        self.RequestTweets = channel.unary_stream(
+                '/Tweet/RequestTweets',
+                request_serializer=Assignment1__pb2.TweetRequest.SerializeToString,
+                response_deserializer=Assignment1__pb2.TweetReply.FromString,
+                )
 
 
 class TweetServicer(object):
-  """The tweet service definition.
-  """
-
-  def RequestTweets(self, request, context):
-    """streams tweets
+    """The tweet service definition.
     """
-    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-    context.set_details('Method not implemented!')
-    raise NotImplementedError('Method not implemented!')
+
+    def RequestTweets(self, request, context):
+        """streams tweets
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
 
 
 def add_TweetServicer_to_server(servicer, server):
-  rpc_method_handlers = {
-      'RequestTweets': grpc.unary_stream_rpc_method_handler(
-          servicer.RequestTweets,
-          request_deserializer=Assignment1__pb2.TweetRequest.FromString,
-          response_serializer=Assignment1__pb2.TweetReply.SerializeToString,
-      ),
-  }
-  generic_handler = grpc.method_handlers_generic_handler(
-      'Tweet', rpc_method_handlers)
-  server.add_generic_rpc_handlers((generic_handler,))
+    rpc_method_handlers = {
+            'RequestTweets': grpc.unary_stream_rpc_method_handler(
+                    servicer.RequestTweets,
+                    request_deserializer=Assignment1__pb2.TweetRequest.FromString,
+                    response_serializer=Assignment1__pb2.TweetReply.SerializeToString,
+            ),
+    }
+    generic_handler = grpc.method_handlers_generic_handler(
+            'Tweet', rpc_method_handlers)
+    server.add_generic_rpc_handlers((generic_handler,))
+
+
+ # This class is part of an EXPERIMENTAL API.
+class Tweet(object):
+    """The tweet service definition.
+    """
+
+    @staticmethod
+    def RequestTweets(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/Tweet/RequestTweets',
+            Assignment1__pb2.TweetRequest.SerializeToString,
+            Assignment1__pb2.TweetReply.FromString,
+            options, channel_credentials,
+            call_credentials, compression, wait_for_ready, timeout, metadata)
+
+
+class RedditStub(object):
+    """The Reddit Post service definition.
+    """
+
+    def __init__(self, channel):
+        """Constructor.
+
+        Args:
+            channel: A grpc.Channel.
+        """
+        self.RequestRedditPosts = channel.unary_stream(
+                '/Reddit/RequestRedditPosts',
+                request_serializer=Assignment1__pb2.RedditPostRequest.SerializeToString,
+                response_deserializer=Assignment1__pb2.RedditPostReply.FromString,
+                )
+
+
+class RedditServicer(object):
+    """The Reddit Post service definition.
+    """
+
+    def RequestRedditPosts(self, request, context):
+        """streams tweets
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+
+def add_RedditServicer_to_server(servicer, server):
+    rpc_method_handlers = {
+            'RequestRedditPosts': grpc.unary_stream_rpc_method_handler(
+                    servicer.RequestRedditPosts,
+                    request_deserializer=Assignment1__pb2.RedditPostRequest.FromString,
+                    response_serializer=Assignment1__pb2.RedditPostReply.SerializeToString,
+            ),
+    }
+    generic_handler = grpc.method_handlers_generic_handler(
+            'Reddit', rpc_method_handlers)
+    server.add_generic_rpc_handlers((generic_handler,))
+
+
+ # This class is part of an EXPERIMENTAL API.
+class Reddit(object):
+    """The Reddit Post service definition.
+    """
+
+    @staticmethod
+    def RequestRedditPosts(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/Reddit/RequestRedditPosts',
+            Assignment1__pb2.RedditPostRequest.SerializeToString,
+            Assignment1__pb2.RedditPostReply.FromString,
+            options, channel_credentials,
+            call_credentials, compression, wait_for_ready, timeout, metadata)
