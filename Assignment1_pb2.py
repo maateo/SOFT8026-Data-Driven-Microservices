@@ -18,7 +18,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=b'\n\x11\x41ssignment1.proto\"(\n\x0cTweetRequest\x12\x18\n\x10number_of_tweets\x18\x01 \x01(\x05\"`\n\nTweetReply\x12\x0e\n\x06target\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\t\x12\x0c\n\x04\x64\x61te\x18\x03 \x01(\t\x12\x0c\n\x04\x66lag\x18\x04 \x01(\t\x12\x0c\n\x04user\x18\x05 \x01(\t\x12\x0c\n\x04text\x18\x06 \x01(\t\"3\n\x11RedditPostRequest\x12\x1e\n\x16number_of_reddit_posts\x18\x01 \x01(\x05\"o\n\x0fRedditPostReply\x12\n\n\x02id\x18\x01 \x01(\t\x12\r\n\x05title\x18\x02 \x01(\t\x12\r\n\x05score\x18\x03 \x01(\t\x12\x0e\n\x06\x61uthor\x18\x04 \x01(\t\x12\x11\n\tfull_link\x18\x05 \x01(\t\x12\x0f\n\x07over_18\x18\x06 \x01(\t28\n\x05Tweet\x12/\n\rRequestTweets\x12\r.TweetRequest\x1a\x0b.TweetReply\"\x00\x30\x01\x32H\n\x06Reddit\x12>\n\x12RequestRedditPosts\x12\x12.RedditPostRequest\x1a\x10.RedditPostReply\"\x00\x30\x01\x62\x06proto3'
+  serialized_pb=b'\n\x11\x41ssignment1.proto\"(\n\x0cTweetRequest\x12\x18\n\x10number_of_tweets\x18\x01 \x01(\x05\"`\n\nTweetReply\x12\x0e\n\x06target\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\t\x12\x0c\n\x04\x64\x61te\x18\x03 \x01(\t\x12\x0c\n\x04\x66lag\x18\x04 \x01(\t\x12\x0c\n\x04user\x18\x05 \x01(\t\x12\x0c\n\x04text\x18\x06 \x01(\t\"3\n\x11RedditPostRequest\x12\x1e\n\x16number_of_reddit_posts\x18\x01 \x01(\x05\"\x86\x01\n\x0fRedditPostReply\x12\n\n\x02id\x18\x01 \x01(\t\x12\r\n\x05title\x18\x02 \x01(\t\x12\r\n\x05score\x18\x03 \x01(\t\x12\x0e\n\x06\x61uthor\x18\x04 \x01(\t\x12\x15\n\roriginal_date\x18\x05 \x01(\t\x12\x11\n\tfull_link\x18\x06 \x01(\t\x12\x0f\n\x07over_18\x18\x07 \x01(\t28\n\x05Tweet\x12/\n\rRequestTweets\x12\r.TweetRequest\x1a\x0b.TweetReply\"\x00\x30\x01\x32H\n\x06Reddit\x12>\n\x12RequestRedditPosts\x12\x12.RedditPostRequest\x1a\x10.RedditPostReply\"\x00\x30\x01\x62\x06proto3'
 )
 
 
@@ -188,15 +188,22 @@ _REDDITPOSTREPLY = _descriptor.Descriptor(
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='full_link', full_name='RedditPostReply.full_link', index=4,
+      name='original_date', full_name='RedditPostReply.original_date', index=4,
       number=5, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='over_18', full_name='RedditPostReply.over_18', index=5,
+      name='full_link', full_name='RedditPostReply.full_link', index=5,
       number=6, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='over_18', full_name='RedditPostReply.over_18', index=6,
+      number=7, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -213,8 +220,8 @@ _REDDITPOSTREPLY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=214,
-  serialized_end=325,
+  serialized_start=215,
+  serialized_end=349,
 )
 
 DESCRIPTOR.message_types_by_name['TweetRequest'] = _TWEETREQUEST
@@ -259,8 +266,8 @@ _TWEET = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=327,
-  serialized_end=383,
+  serialized_start=351,
+  serialized_end=407,
   methods=[
   _descriptor.MethodDescriptor(
     name='RequestTweets',
@@ -283,8 +290,8 @@ _REDDIT = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=1,
   serialized_options=None,
-  serialized_start=385,
-  serialized_end=457,
+  serialized_start=409,
+  serialized_end=481,
   methods=[
   _descriptor.MethodDescriptor(
     name='RequestRedditPosts',

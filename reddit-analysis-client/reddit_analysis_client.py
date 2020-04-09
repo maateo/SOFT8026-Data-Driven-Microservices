@@ -25,6 +25,7 @@ def run():
                         "title": str(reddit_post.title),
                         "score": str(reddit_post.score),
                         "author": str(reddit_post.author),
+                        "original_date": str(reddit_post.original_date),
                         "full_link": str(reddit_post.full_link),
                         "over_18": str(reddit_post.over_18),
                         # "word_count": str(len(re.findall(r'\w+', reddit_post.text))),
@@ -41,7 +42,7 @@ def run():
                 except Exception as ex:
                     print('Error:', ex)
 
-                print("Reddit analysis client received: ", reddit_post.id, reddit_post.title, reddit_post.score, reddit_post.author, reddit_post.full_link, reddit_post.over_18, flush=True)
+                print("Reddit analysis client received: ", reddit_post.id, reddit_post.title, reddit_post.score, reddit_post.author, reddit_post.original_date, reddit_post.full_link, reddit_post.over_18, flush=True)
 
 
 def analise_totals(conn, text):
