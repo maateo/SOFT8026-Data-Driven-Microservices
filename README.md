@@ -23,4 +23,46 @@ https://github.com/grpc/grpc.github.io/blob/master/docs/tutorials/basic/python.m
  - `sudo docker system prune`
  - `sudo docker-compose up --build`
  - `sudo docker stop $(sudo docker ps -a -q)` - Stops all running containers
+  
  
+# microk8s
+## Avoid pulling images
+It is possible to avoid having to pull images from dockerhub if they are available locally. 
+To create images locally, build the docker file seperately, or use the `sudo docker-compose build` command.
+The local images should saved as a tar file, and then imported to microk8s. 
+ - Tag the image as usual
+ - Save the image into a .tar file `sudo docker save matalt/reddit-post-server > reddit-post-server.tar`
+ - Import the image into microk8s using `microk8s ctr image import reddit-post-server.tar`
+ 
+ ## Other useful commands
+ - `microk8s.kubectl create -f reddit-post-server-deploy.yml`
+ - `microk8s.kubectl get pods`
+ - `microk8s.kubectl get deplotments`
+ - `microk8s.kubectl delete deployment.apps/reddit-post-server-deploy`
+ - `microk8s ctr images ls`
+
+
+
+# Saving some time
+
+## Tagging
+ - `sudo docker tag soft8026-data-driven-microservices-assignment-1_website matalt/website:latest`
+ - `sudo docker tag soft8026-data-driven-microservices-assignment-1_reddit-analysis-client matalt/reddit-analysis-client:latest`
+ - `sudo docker tag soft8026-data-driven-microservices-assignment-1_reddit-post-server matalt/reddit-post-server:latest`
+ - `sudo docker tag soft8026-data-driven-microservices-assignment-1_tweet-analysis-client matalt/tweet-analysis-client:latest`
+ - `sudo docker tag soft8026-data-driven-microservices-assignment-1_tweet-server matalt/tweet-server:latest`
+
+## Pushing to dockerhub
+ - `sudo docker push matalt/website:latest`
+ - `sudo docker push matalt/reddit-analysis-client:latest`
+ - `sudo docker push matalt/reddit-post-server:latest`
+ - `sudo docker push matalt/tweet-analysis-client:latest`
+ - `sudo docker push matalt/tweet-server:latest`
+ 
+## Moving images docker to microk8s
+### Saving
+ - `sudo docker save matalt/website > website.tar`
+ - `sudo docker save matalt/reddit-analysis-client > reddit-analysis-client.tar`
+ - `sudo docker save matalt/reddit-post-server > reddit-post-server.tar`
+ - `sudo docker save matalt/tweet-analysis-client > tweet-analysis-client.tar`
+ - `sudo docker save matalt/tweet-server > tweet-server.tar`

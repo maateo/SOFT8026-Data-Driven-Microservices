@@ -5,7 +5,7 @@ FROM python:3-stretch
 WORKDIR /app
 
 # Copy the current host directory contents into the container at /app
-COPY /reddit-server /app
+COPY /reddit-post-server /app
 COPY r_dataisbeautiful_posts.csv /app
 COPY Assignment1_pb2.py /app
 COPY Assignment1_pb2_grpc.py /app
