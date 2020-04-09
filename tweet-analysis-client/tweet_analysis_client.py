@@ -13,7 +13,7 @@ import Assignment1_pb2_grpc
 
 
 def run():
-    with grpc.insecure_channel('tweet_server:50051') as channel:
+    with grpc.insecure_channel('tweet-server:50051') as channel:
         stub = Assignment1_pb2_grpc.TweetStub(channel)
 
         while True:

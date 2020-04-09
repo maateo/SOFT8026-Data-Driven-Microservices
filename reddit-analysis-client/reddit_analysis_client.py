@@ -13,7 +13,7 @@ import Assignment1_pb2_grpc
 
 
 def run():
-    with grpc.insecure_channel('reddit_post_server:50052') as channel:
+    with grpc.insecure_channel('reddit-post-server:50052') as channel:
         stub = Assignment1_pb2_grpc.RedditStub(channel)
 
         while True:
