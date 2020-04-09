@@ -7,13 +7,26 @@ services:
       dockerfile: tweet-server/.Dockerfile
     ports:
       - "50051:50051"
-  analysis_client:
+  tweet_analysis_client:
     build:
       context: .
-      dockerfile: analysis-client/.Dockerfile
+      dockerfile: tweet-analysis-client/.Dockerfile
     depends_on:
       - "tweet_server"
-    command: ["./wait-for-it.sh", "tweet_server:50051", "--", "python", "analysis_client.py"]
+    command: ["./wait-for-it.sh", "tweet_server:50051", "--", "python", "tweet_analysis_client.py"]
+  reddit_post_server:
+    build:
+      context: .
+      dockerfile: reddit-server/.Dockerfile
+    ports:
+      - "50052:50052"
+  reddit_analysis_client:
+    build:
+      context: .
+      dockerfile: reddit-analysis-client/.Dockerfile
+    depends_on:
+      - "reddit_post_server"
+    command: ["./wait-for-it.sh", "reddit_post_server:50052", "--", "python", "reddit_analysis_client.py"]
   redis:
     image: redis:alpine
     ports:
