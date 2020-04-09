@@ -19,7 +19,7 @@ def run():
         while True:
             for reddit_post in stub.RequestRedditPosts(Assignment1_pb2.RedditPostRequest(number_of_reddit_posts=random.randint(1, 15))):
                 try:
-                    conn = redis.StrictRedis(host='redis', port=6379)
+                    conn = redis.StrictRedis(host='redis', port=6379, decode_responses=True)
                     reddit_post_data = {
                         "id": str(reddit_post.id),
                         "title": str(reddit_post.title),

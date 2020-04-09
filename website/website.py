@@ -19,7 +19,10 @@ def print_logs():
         output += combine_outputs(tweets_analytics_output, tweets_table_output, reddit_analytics_output, reddit_table_output)
 
     except Exception as ex:
-        output = 'Error:' + str(ex) + '<META HTTP-EQUIV="refresh" CONTENT="1">'
+        if str(ex) == "'NoneType' object is not subscriptable":
+            output = "Loading, please wait" + '<META HTTP-EQUIV="refresh" CONTENT="1">'
+        else:
+            output = 'Error:' + str(ex) + '<META HTTP-EQUIV="refresh" CONTENT="1">'
 
     return output
 
@@ -110,26 +113,29 @@ def reddit_posts_table(conn):
     html = """
                 <tr>
                     <td>
-                        <div style="text-align: center;">
-                            <small><i>%s</i></small>
+                        <div style="background-color:%s;">
+                            <div style="text-align: center;">
+                                <small><i>%s</i></small>
                 
-                            <br>
+                                <br>
                 
-                            %s
+                                %s
                 
-                            <br>
+                                <br>
+                                <br>
                 
-                            <small>
-                                Reddit URL: %s
-                            </small>
+                                <small>
+                                    <strong> Reddit Post Id: </strong> %s
+                                    <strong> Words:</strong> %s
+                                    <strong> Time analysed: </strong> %s
+                                </small>
+
+                                <br>
                 
-                            <br>
-                
-                            <small>
-                                <strong> Reddit Post Id: </strong> %s
-                                <strong> Words:</strong> %s
-                                <strong> Time analysed: </strong> %s
-                            </small>
+                                <small>
+                                    <strong>Reddit URL:</strong> %s
+                                </small>
+                            </div>
                         </div>
                     </td>
                 </tr>
@@ -143,7 +149,13 @@ def reddit_posts_table(conn):
     for key in keys:
         data = conn.hgetall(key)
 
-        output += html % (data["author"], data["title"], data["full_link"], data["id"], data["word_count"], data["time_analysed"])
+        background_color = ''
+        if data["over_18"] == "True":
+            background_color = "coral"
+        else:
+            background_color = "lightblue"
+
+        output += html % (background_color, data["author"], data["title"], data["id"], data["word_count"], data["time_analysed"], data["full_link"])
 
     return output
 
@@ -172,8 +184,8 @@ def reddit_posts_analytics(conn):
     total_vowel_count = str(conn.get("reddit_posts_total_vowel_count"))
     total_word_count = str(conn.get("reddit_posts_total_word_count"))
 
-    over_18_count = conn.get("reddit_posts_3_minute_over_18")
-    under_18_count = conn.get("reddit_posts_3_minute_under_18")
+    over_18_count = str(conn.get("reddit_posts_3_minute_over_18"))
+    under_18_count = str(conn.get("reddit_posts_3_minute_under_18"))
 
     ath_word = str(conn.get("reddit_posts_all_time_high_word"))
     ath_word_count = str(conn.get("reddit_posts_all_time_high_word_count"))
@@ -197,7 +209,7 @@ def combine_outputs(tweets_analytics, tweets_table, reddit_analytics, reddit_tab
                 padding: 1em;
               }
               h3 {
-                margin-top: 5em;
+                margin-top: 1em;
               }
             </style>
             <div id="wrapper">
