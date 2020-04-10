@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reddit-post-server-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: reddit-post-server
+  minReadySeconds: 6
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: reddit-post-server
+    spec:
+      containers:
+        - name: reddit-post-server
+          image: matalt/reddit-post-server:latest
+          ports:
+            - containerPort: 50052

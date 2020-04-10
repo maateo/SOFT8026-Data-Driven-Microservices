@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tweet-server-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tweet-server
+  minReadySeconds: 6
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: tweet-server
+    spec:
+      containers:
+        - name: tweet-server
+          image: matalt/tweet-server:latest
+          ports:
+            - containerPort: 50051

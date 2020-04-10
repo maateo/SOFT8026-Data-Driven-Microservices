@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reddit-analysis-client-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: reddit-analysis-client
+  minReadySeconds: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: reddit-analysis-client
+    spec:
+      containers:
+      - name: reddit-analysis-client
+        image: matalt/reddit-analysis-client:latest

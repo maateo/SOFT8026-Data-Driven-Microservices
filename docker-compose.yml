@@ -17,7 +17,7 @@ services:
   reddit-post-server:
     build:
       context: .
-      dockerfile: reddit-server/.Dockerfile
+      dockerfile: reddit-post-server/.Dockerfile
     ports:
       - "50052:50052"
   reddit-analysis-client:

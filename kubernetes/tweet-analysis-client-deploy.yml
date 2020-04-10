@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tweet-analysis-client-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tweet-analysis-client
+  minReadySeconds: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: tweet-analysis-client
+    spec:
+      containers:
+      - name: tweet-analysis-client
+        image: matalt/tweet-analysis-client:latest
