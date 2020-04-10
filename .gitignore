@@ -8,3 +8,5 @@
 /r_dataisbeautiful_posts.csv
 
 *.pyc
+
+kubernetes/*.tar

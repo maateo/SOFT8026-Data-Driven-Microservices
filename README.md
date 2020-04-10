@@ -37,9 +37,13 @@ The local images should saved as a tar file, and then imported to microk8s.
  ## Other useful commands
  - `microk8s.kubectl create -f reddit-post-server-deploy.yml`
  - `microk8s.kubectl get pods`
- - `microk8s.kubectl get deplotments`
+ - `microk8s.kubectl get deployments`
+ - `microk8s.kubectl get services`
  - `microk8s.kubectl delete deployment.apps/reddit-post-server-deploy`
  - `microk8s ctr images ls`
+ - `microk8s.kubectl create -f reddit-post-server-svc.yml`
+ - `microk8s reset`
+ - `microk8s enable dns storage`
 
 
 
@@ -66,3 +70,34 @@ The local images should saved as a tar file, and then imported to microk8s.
  - `sudo docker save matalt/reddit-post-server > reddit-post-server.tar`
  - `sudo docker save matalt/tweet-analysis-client > tweet-analysis-client.tar`
  - `sudo docker save matalt/tweet-server > tweet-server.tar`
+
+### Importing
+ - `microk8s ctr image import website.tar`
+ - `microk8s ctr image import reddit-analysis-client.tar`
+ - `microk8s ctr image import reddit-post-server.tar`
+ - `microk8s ctr image import tweet-analysis-client.tar`
+ - `microk8s ctr image import tweet-server.tar`
+
+
+## Deploy everything
+ - `microk8s.kubectl create -f tweet-server-deploy.yml`
+ - `microk8s.kubectl create -f tweet-server-svc.yml`
+ - `microk8s.kubectl create -f reddit-post-server-deploy.yml`
+ - `microk8s.kubectl create -f reddit-post-server-svc.yml`
+ - `microk8s.kubectl create -f tweet-analysis-client-deploy.yml`
+ - `microk8s.kubectl create -f reddit-analysis-client-deploy.yml`
+ - `microk8s.kubectl create -f website-deploy.yml`
+ - `microk8s.kubectl create -f website-svc.yml`
+
+ 
+## Delete everything
+### Deployments
+ - `microk8s.kubectl delete deployment.apps/tweet-server-deploy`
+ - `microk8s.kubectl delete deployment.apps/reddit-post-server-deploy`
+ - `microk8s.kubectl delete deployment.apps/tweet-analysis-client-deploy`
+ - `microk8s.kubectl delete deployment.apps/reddit-analysis-client-deploy`
+ - `microk8s.kubectl delete deployment.apps/website-deploy`
+ ## Services
+ - `microk8s.kubectl delete services/tweet-server`
+ - `microk8s.kubectl delete services/reddit-post-server`
+ - `microk8s.kubectl delete services/website`
