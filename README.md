@@ -84,6 +84,8 @@ The local images should saved as a tar file, and then imported to microk8s.
  - `microk8s.kubectl create -f tweet-server-svc.yml`
  - `microk8s.kubectl create -f reddit-post-server-deploy.yml`
  - `microk8s.kubectl create -f reddit-post-server-svc.yml`
+ - `microk8s.kubectl create -f redis-deploy.yml`
+ - `microk8s.kubectl create -f redis-svc.yml`
  - `microk8s.kubectl create -f tweet-analysis-client-deploy.yml`
  - `microk8s.kubectl create -f reddit-analysis-client-deploy.yml`
  - `microk8s.kubectl create -f website-deploy.yml`
@@ -94,10 +96,12 @@ The local images should saved as a tar file, and then imported to microk8s.
 ### Deployments
  - `microk8s.kubectl delete deployment.apps/tweet-server-deploy`
  - `microk8s.kubectl delete deployment.apps/reddit-post-server-deploy`
+ - `microk8s.kubectl delete deployment.apps/redis-deploy`
  - `microk8s.kubectl delete deployment.apps/tweet-analysis-client-deploy`
  - `microk8s.kubectl delete deployment.apps/reddit-analysis-client-deploy`
  - `microk8s.kubectl delete deployment.apps/website-deploy`
  ## Services
  - `microk8s.kubectl delete services/tweet-server`
  - `microk8s.kubectl delete services/reddit-post-server`
+ - `microk8s.kubectl delete services/redis`
  - `microk8s.kubectl delete services/website`
