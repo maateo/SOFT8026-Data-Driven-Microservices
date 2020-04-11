@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: redis-deploy
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: redis
@@ -19,6 +19,6 @@ spec:
             - containerPort: 6379
           resources:
             limits:
-              cpu: "0.18"
+              cpu: "0.6"
             requests:
-              cpu: "0.1"
+              cpu: "0.3"
