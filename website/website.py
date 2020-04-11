@@ -88,6 +88,8 @@ def tweets_analytics(conn):
             <strong>Tweet with most words:</strong> %s 
             <br><br>
             Word count: %s
+
+            <div style="text-align: center;"><h3> Latest Tweets (10 seconds) </h3></div>
            """
 
     total_vowel_count = str(conn.get("total_vowel_count"))
@@ -179,6 +181,8 @@ def reddit_posts_analytics(conn):
             <strong>Reddit Post with most words:</strong> %s 
             <br><br>
             Word count: %s
+
+            <div style="text-align: center;"><h3> Latest Reddit Posts (10 seconds) </h3></div>
            """
 
     total_vowel_count = str(conn.get("reddit_posts_total_vowel_count"))
@@ -195,7 +199,7 @@ def reddit_posts_analytics(conn):
 
 def combine_outputs(tweets_analytics, tweets_table, reddit_analytics, reddit_table):
     output = """
-            <META HTTP-EQUIV="refresh" CONTENT="1.5">
+            <META HTTP-EQUIV="refresh" CONTENT="2">
             <style> 
               #wrapper {
                 display: flex;

@@ -32,7 +32,9 @@ def run():
                         "time_analysed": str(datetime.datetime.now())
                     }
 
-                    conn.hmset("reddit_posts." + str(datetime.datetime.now()), reddit_post_data)
+                    hashmapKey = "reddit_posts." + str(datetime.datetime.now())
+                    conn.hmset(hashmapKey, reddit_post_data)
+                    conn.expire(hashmapKey, 10)
                     conn.set("reddit_posts_3md." + str(datetime.datetime.now()), reddit_post.over_18, ex=180)
 
                     analise_totals(conn, reddit_post.title)
