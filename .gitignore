@@ -10,3 +10,4 @@
 *.pyc
 
 kubernetes/*.tar
+/kubernetes/*.zip
