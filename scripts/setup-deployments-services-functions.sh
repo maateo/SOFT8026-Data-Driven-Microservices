@@ -1,5 +1,7 @@
 echo "Setting up deployments and services"
 
+microk8s enable dns storage
+
 MY_PATH="`dirname \"$0\"`"
 
 microk8s.kubectl create -f $MY_PATH'/../kubernetes/tweet-server-deploy.yml'

@@ -1,4 +1,7 @@
-#microk8s enable dashboard metrics-server
+echo "Setting up monitoring"
+
+microk8s enable dashboard metrics-server dns storage
+
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0-beta8/aio/deploy/recommended.yaml
 token=$(microk8s kubectl -n kube-system get secret | grep default-token | cut -d " " -f1)
 microk8s kubectl -n kube-system describe secret $token

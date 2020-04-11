@@ -1,0 +1,30 @@
+Index: scripts/delete-deployments-services-and-functions.sh
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- scripts/delete-deployments-services-and-functions.sh	(date 1586600630477)
++++ scripts/delete-deployments-services-and-functions.sh	(date 1586600630477)
+@@ -0,0 +1,10 @@
++microk8s.kubectl delete deployment.apps/tweet-server-deploy
++microk8s.kubectl delete deployment.apps/reddit-post-server-deploy
++microk8s.kubectl delete deployment.apps/redis-deploy
++microk8s.kubectl delete deployment.apps/tweet-analysis-client-deploy
++microk8s.kubectl delete deployment.apps/reddit-analysis-client-deploy
++microk8s.kubectl delete deployment.apps/website-deploy
++microk8s.kubectl delete services/tweet-server
++microk8s.kubectl delete services/reddit-post-server
++microk8s.kubectl delete services/redis
++microk8s.kubectl delete services/website
+Index: scripts/setup-everything.sh
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- scripts/setup-everything.sh	(date 1586600861429)
++++ scripts/setup-everything.sh	(date 1586600861429)
+@@ -0,0 +1,4 @@
++export RELEASE=$(curl -s https://api.github.com/repos/kubeless/kubeless/releases/latest | grep tag_name | cut -d '"' -f 4)
++microk8s.kubectl create ns kubeless
++microk8s.kubectl create -f https://github.com/kubeless/kubeless/releases/download/$RELEASE/kubeless-$RELEASE.yaml
++microk8s.kubectl get pods -n kubeless
