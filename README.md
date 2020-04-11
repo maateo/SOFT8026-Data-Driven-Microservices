@@ -105,3 +105,38 @@ The local images should saved as a tar file, and then imported to microk8s.
  - `microk8s.kubectl delete services/reddit-post-server`
  - `microk8s.kubectl delete services/redis`
  - `microk8s.kubectl delete services/website`
+
+
+
+# Kubeless
+## Adding kubeless namespace and pods to kubernetes
+Assuming you  have kubeless installed
+ - `export RELEASE=$(curl -s https://api.github.com/repos/kubeless/kubeless/releases/latest | grep tag_name | cut -d '"' -f 4)`
+ - `microk8s.kubectl create ns kubeless`
+ - `microk8s.kubectl create -f https://github.com/kubeless/kubeless/releases/download/$RELEASE/kubeless-$RELEASE.yaml`
+ - `microk8s.kubectl get pods -n kubeless`
+ 
+Other useful commands
+
+ - `microk8s.config > $HOME/.kube/config`
+ - `kubeless function deploy get-word-and-vowel-count --runtime python2.7 --from-file kubeless_function.py --handler kubeless_function.get_word_and_vowel_count`
+
+#### You can also deploy with requirements (dependencies)
+ - `kubeless function deploy get-word-and-vowel-count --runtime python2.7 --from-file kubeless_function.py --handler kubeless_function.get_word_and_vowel_count --dependencies requirements.txt`
+ 
+#### Deleting
+ - `kubeless function delete get-word-and-vowel-count`
+
+#### Executing 
+ - `kubeless function call get-word-and-vowel-count --data "HELLO WORLD!"`
+or 
+ - `microk8s.kubectl get services` --> Take the CLUSTER-IP
+ - `curl -L --data 'hello world a' 10.152.183.219:8080/api/v1/namespaces/default/services/get-word-and-vowel-count`
+
+
+# Deleting stubborn namespace (kubeless in this example)
+ - `kubectl get namespace kubeless -o json > tmp.json`
+ - `nano tmp.json` -> remove kubernetes finalizer
+ - `kubectl proxy` -> Do this in a new window to start a proxy. It will be 127.0.0.1:8001 by default
+ - `curl -k -H "Content-Type: application/json" -X PUT --data-binary @tmp.json 127.0.0.1:8001/api/v1/namespaces/kubeless/finalize`
+ - `microk8s.kubectl get namespace`
