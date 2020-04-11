@@ -26,9 +26,9 @@ kubectl wait --for=condition=Ready pods --all -n kubeless
 microk8s.config > $HOME/.kube/config
 kubeless function deploy get-word-and-vowel-count --runtime python2.7 --from-file $MY_PATH'/../kubeless_function.py' --handler kubeless_function.get_word_and_vowel_count
 
-echo "Function created. Please wait while everything is starting..."
+echo "Function created. Please wait while everything is starting... This can take a while..."
 
-kubectl wait --for=condition=Ready pods --all --all-namespaces
+kubectl wait --for=condition=Ready pods --all --all-namespaces --timeout 180s
 sleep 10
 echo ""
 echo "Everything is ready"

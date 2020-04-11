@@ -60,14 +60,23 @@ def tweets_table(conn):
     for key in keys:
         data = conn.hgetall(key)
 
+        target = data.get("target", "0")
+        id = data.get("id", "")
+        # date = data.get("date", "")
+        # flag = data.get("flag", "")
+        user = data.get("user", "")
+        text = data.get("text", "")
+        word_count = data.get("word_count", "")
+        time_analysed = data.get("time_analysed", "")
+
         background_color = ''
-        if int(data["target"]) == 0:
+        if int(target) == 0:
             background_color = "coral"
-        elif int(data["target"]) == 4:
+        elif int(target) == 4:
             background_color = "lightblue"
 
-        output += row_html % (background_color, data["user"], data["text"], data["id"], data["word_count"], data["time_analysed"])
-
+        output += row_html % (background_color, user, text, id, word_count, time_analysed)
+        # output += type(data)
     return output
 
 
@@ -151,13 +160,23 @@ def reddit_posts_table(conn):
     for key in keys:
         data = conn.hgetall(key)
 
+        id = data.get("id", "")
+        title = data.get("title", "")
+        # score = data.get("score", "")
+        author = data.get("author", "")
+        # original_date = data.get("original_date", "")
+        full_link = data.get("full_link", "")
+        over_18 = data.get("over_18", "")
+        word_count = data.get("word_count", "")
+        time_analysed = data.get("time_analysed", "")
+
         background_color = ''
-        if data["over_18"] == "True":
+        if over_18 == "True":
             background_color = "coral"
         else:
             background_color = "lightblue"
 
-        output += html % (background_color, data["author"], data["title"], data["id"], data["word_count"], data["time_analysed"], data["full_link"])
+        output += html % (background_color, author, title, id, word_count, time_analysed, full_link)
 
     return output
 

@@ -9,8 +9,8 @@ spec:
     app: redis
   type: NodePort
   ports:
-  - port: 6379
-    nodePort: 30001
-    protocol: TCP
+    - port: 6379
+      nodePort: 30001
+      protocol: TCP
         
         
