@@ -31,7 +31,9 @@ def run():
                         "time_analysed": str(datetime.datetime.now())
                     }
 
-                    conn.hmset("tweets." + str(datetime.datetime.now()), tweet_data)
+                    hashmapKey = "tweets." + str(datetime.datetime.now())
+                    conn.hmset(hashmapKey, tweet_data)
+                    conn.expire(hashmapKey, 10)
                     conn.set("3md." + str(datetime.datetime.now()), tweet.target, ex=180)
 
                     analise_totals(conn, tweet.text)
