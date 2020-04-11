@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: website-deploy
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: website
@@ -19,7 +19,12 @@ spec:
         app: website
     spec:
       containers:
-      - name: website
-        image: matalt/website:latest
-        ports:
-        - containerPort: 5000
+        - name: website
+          image: matalt/website:latest
+          ports:
+            - containerPort: 5000
+          resources:
+            limits:
+              cpu: "0.06"
+            requests:
+              cpu: "0.025"

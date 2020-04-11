@@ -6,7 +6,7 @@ metadata:
     app: tweet-server
 spec:
   ports:
-  - port: 50051
-    protocol: TCP
+    - port: 50051
+      protocol: TCP
   selector:
     app: tweet-server

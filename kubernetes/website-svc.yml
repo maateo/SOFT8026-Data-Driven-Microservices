@@ -9,8 +9,6 @@ spec:
     app: website
   type: NodePort
   ports:
-  - port: 5000
-    nodePort: 30000
-    protocol: TCP
-        
-        
+    - port: 5000
+      nodePort: 30000
+      protocol: TCP

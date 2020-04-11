@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: reddit-post-server-deploy
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: reddit-post-server
@@ -23,3 +23,8 @@ spec:
           image: matalt/reddit-post-server:latest
           ports:
             - containerPort: 50052
+          resources:
+            limits:
+              cpu: "0.05"
+            requests:
+              cpu: "0.03"
