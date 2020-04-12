@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: tweet-analysis-client-deploy
 spec:
-  replicas: 6
+  replicas: 4
   selector:
     matchLabels:
       app: tweet-analysis-client

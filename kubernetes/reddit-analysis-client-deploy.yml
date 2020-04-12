@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: reddit-analysis-client-deploy
 spec:
-  replicas: 6
+  replicas: 4
   selector:
     matchLabels:
       app: reddit-analysis-client

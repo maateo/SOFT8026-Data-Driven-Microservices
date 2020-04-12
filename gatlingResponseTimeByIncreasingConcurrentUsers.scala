@@ -1,4 +1,3 @@
-
 import scala.concurrent.duration._
 
 import io.gatling.core.Predef._
@@ -7,7 +6,7 @@ import io.gatling.jdbc.Predef._
 
 class gatlingResponseTimeByIncreasingConcurrentUsers extends Simulation {
 
- val httpProtocol = http
+  val httpProtocol = http
     .baseUrl("http://127.0.0.1:30000")
     .acceptHeader("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8")
     .doNotTrackHeader("1")
@@ -18,15 +17,15 @@ class gatlingResponseTimeByIncreasingConcurrentUsers extends Simulation {
   val scn = scenario("gatlingResponseTimeByIncreasingConcurrentUsers")
     .exec(http("request_1")
       .get("/"))
-    .pause(5) 
+    .pause(5)
 
   setUp(
     scn.inject(
-		// Add 10 concurrent users 10 times with each level lasting 10 seconds
-	    incrementConcurrentUsers(10) 
-	      .times(10)
-	      .eachLevelLasting(10 seconds)
-	//      .separatedByRampsLasting(10 seconds)
+      // Add 5 concurrent users 10 times with each level lasting 20 seconds
+      incrementConcurrentUsers(5)
+        .times(10)
+        .eachLevelLasting(20 seconds)
+//        .separatedByRampsLasting(30 seconds)
     )
-  ).protocols(httpProtocol) 
+  ).protocols(httpProtocol)
 }
