@@ -11,3 +11,5 @@
 
 kubernetes/*.tar
 /kubernetes/*.zip
+
+/*.odt
