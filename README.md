@@ -1,5 +1,10 @@
-# Running the project
-Please place the `training.1600000.processed.noemoticon.csv` file into the root of this project. The file can be downloaded from https://www.kaggle.com/kazanova/sentiment140/data.
+# Running the project using docker-compose
+Please place the `training.1600000.processed.noemoticon.csv` and `r_dataisbeautiful_posts.csv` file into the root of this project. The files can be downloaded from https://www.kaggle.com/kazanova/sentiment140/data and https://www.kaggle.com/unanimad/dataisbeautiful respectively.
+
+# Deploying the project on kubernetes
+There are two options:
+ - deploy the yml files in the kubernetes folder
+ - run the scripts/setup.sh script
 
 # Building proto files
 ### Adapted from: https://grpc.io/docs/quickstart/python/
